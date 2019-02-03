@@ -1,6 +1,6 @@
 import config from './config/config';
 
-const knexConfig = {
+export const knexConfig = {
   ...config.database,
   migration : {
     tableName : 'migration_list',
@@ -9,5 +9,3 @@ const knexConfig = {
     extension : ['ts']
   }
 };
-
-module.exports = knexConfig;
