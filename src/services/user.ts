@@ -27,11 +27,11 @@ export async function fetchById(userId:number):Promise<User[]>{
 /**
  * save user
  */
-export async function save(user:any):Promise<User[]>{
+export async function save(userDetail:any):Promise<User[]>{
     try {
-        const [insertId] = await userModel.save(user);
+        const [insertId] = await userModel.save(userDetail);
 
-        return {insertId, ...user};
+        return {insertId, ...userDetail};
     } catch (error) {
         throw error;
     }
@@ -40,11 +40,11 @@ export async function save(user:any):Promise<User[]>{
 /**
  * update user
  */
-export async function update(userId:number,user:User):Promise<User[]>{
+export async function update(userId:number,userDetail:User):Promise<User[]>{
     try {
-        await userModel.update(userId,user);
+        await userModel.update(userId,userDetail);
 
-        return { id:userId, ...user};
+        return { id:userId, ...userDetail};
     } catch (error) {
         throw error;
     }

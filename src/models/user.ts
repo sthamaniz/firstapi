@@ -51,11 +51,11 @@ export async function fetchById(userId: number, tx?: Knex): Promise<User[]> {
  * @param {object} params
  * @param {knex} tx
  */
-export async function save(user: User, tx?: Knex): Promise<User[]> {
+export async function save(userDetail: User, tx?: Knex): Promise<User[]> {
 
     return db
         .connection(tx)(`${USER_TABLE}`)
-        .insert(user);
+        .insert(userDetail);
 };
 
 /**
@@ -64,10 +64,10 @@ export async function save(user: User, tx?: Knex): Promise<User[]> {
  * @param {object} params
  * @param {knex} tx
  */
-export async function update(userId: number, user: User, tx?: Knex): Promise<User[]> {
+export async function update(userId: number, userDetail: User, tx?: Knex): Promise<User[]> {
 
     return db
         .connection(tx)(`${USER_TABLE}`)
         .where({ userId })
-        .update(user);
+        .update(userDetail);
 };
