@@ -1,15 +1,13 @@
-import * as pkg from '../../package.json';
-
-const PORT = process.env.PORT || 8080;
+// import * as pkg from '../../package.json';
 
 const config = {
     app: {
-    name: (pkg as any).name,
-    version: (pkg as any).version,
-    description: (pkg as any).description,
+    name: 'testapi',
+    version: '1.0.0',
+    description: 'test api',
     host: process.env.APP_HOST,
     baseUrl: process.env.API_BASE_URL,
-    port: PORT
+    port: process.env.PORT
     },
     database: {
         client: process.env.DB_CLIENT,
