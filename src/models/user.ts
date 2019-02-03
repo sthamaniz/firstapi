@@ -19,12 +19,55 @@ const SELECT_USER_VALUE = [
 ];
 
 /**
- * fetch all admins list
+ * fetch all users
+ * 
  * @param {object} params
  * @param {knex} tx
  */
-export async function fetchAll(tx?:Knex):Promise<User[]>{
+export async function fetchAll(tx?: Knex): Promise<User[]> {
     return db
         .connection(tx)(`${USER_TABLE} as user`)
         .select(SELECT_USER_VALUE);
+};
+
+/**
+ * fetch user by id
+ * 
+ * @param {object} params
+ * @param {knex} tx
+ */
+export async function fetchById(userId: number, tx?: Knex): Promise<User[]> {
+    const whereParam = userId ? { 'user.id': userId } : {};
+
+    return db
+        .connection(tx)(`${USER_TABLE} as user`)
+        .select(SELECT_USER_VALUE)
+        .where(whereParam);
+};
+
+/**
+ * save user
+ * 
+ * @param {object} params
+ * @param {knex} tx
+ */
+export async function save(user: User, tx?: Knex): Promise<User[]> {
+
+    return db
+        .connection(tx)(`${USER_TABLE}`)
+        .insert(user);
+};
+
+/**
+ * update user
+ * 
+ * @param {object} params
+ * @param {knex} tx
+ */
+export async function update(userId: number, user: User, tx?: Knex): Promise<User[]> {
+
+    return db
+        .connection(tx)(`${USER_TABLE}`)
+        .where({ userId })
+        .update(user);
 };

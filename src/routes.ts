@@ -5,17 +5,27 @@ import userRouter from './routes/user';
 
 const router = Router();
 
-// load the starting page
+/**
+ * get the info on start page
+ */
 router.get('/', (req, res) => {
     res.json({
         name: 'test api'
     });
 });
 
-// use the admin router
+/**
+ * get admins router 
+ * 
+ * GET /admins
+ */
 router.use('/admins',adminRouter);
 
-// use the user router
+/**
+ * get user router
+ * 
+ * GET /users
+ */
 router.use('/users', userRouter);
 
 export default router;

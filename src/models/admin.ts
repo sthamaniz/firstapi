@@ -8,11 +8,11 @@ const ADMIN_TABLE = 'admins';
 const USER_TABLE = 'users';
 
 /**
- * fetch all admins list
+ * fetch all admins
+ * 
  * @param {object} params
  * @param {knex} tx
  */
-
  export async function fetchAll(tx?:Knex):Promise<Admin[]>{
     return db
         .connection(tx)(`${ADMIN_TABLE} as admin`)
@@ -32,4 +32,3 @@ const USER_TABLE = 'users';
             'admin.created_at as createdAt'
         );
  };
-
