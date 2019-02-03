@@ -27,7 +27,7 @@ export async function fetchById(userId:number):Promise<User[]>{
 /**
  * save user
  */
-export async function save(userDetail:any):Promise<User[]>{
+export async function save(userDetail:any):Promise<User>{
     try {
         const [insertId] = await userModel.save(userDetail);
 
@@ -40,11 +40,11 @@ export async function save(userDetail:any):Promise<User[]>{
 /**
  * update user
  */
-export async function update(userId:number,userDetail:User):Promise<User[]>{
+export async function update(userId:number,userDetail:User):Promise<User>{
     try {
-        await userModel.update(userId,userDetail);
+        const [updateId] = await userModel.update(userId,userDetail);
 
-        return { id:userId, ...userDetail};
+        return { id:updateId, ...userDetail};
     } catch (error) {
         throw error;
     }

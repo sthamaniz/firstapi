@@ -51,7 +51,7 @@ export async function fetchById(userId:number, tx?:Knex):Promise<User[]> {
  * @param {object} params
  * @param {knex} tx
  */
-export async function save(userDetail:User, tx?:Knex):Promise<User[]> {
+export async function save(userDetail:User, tx?:Knex) {
 
     return db
         .connection(tx)(`${USER_TABLE}`)
@@ -64,7 +64,7 @@ export async function save(userDetail:User, tx?:Knex):Promise<User[]> {
  * @param {object} params
  * @param {knex} tx
  */
-export async function update(userId:number, userDetail:User, tx?:Knex):Promise<User[]> {
+export async function update(userId:number, userDetail:User, tx?:Knex) {
 
     return db
         .connection(tx)(`${USER_TABLE}`)
