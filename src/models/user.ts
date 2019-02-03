@@ -36,8 +36,8 @@ export async function fetchAll(tx?:Knex):Promise<User[]> {
  * @param {object} params
  * @param {knex} tx
  */
-export async function fetchById(userId:number, tx?:Knex):Promise<User[]> {
-    const whereParam = userId ? { 'user.id':userId } : {};
+export async function fetchById(id:number, tx?:Knex):Promise<User[]> {
+    const whereParam = id ? { 'user.id':id } : {};
 
     return db
         .connection(tx)(`${USER_TABLE} as user`)
@@ -51,11 +51,11 @@ export async function fetchById(userId:number, tx?:Knex):Promise<User[]> {
  * @param {object} params
  * @param {knex} tx
  */
-export async function save(userDetail:User, tx?:Knex) {
+export async function save(user:User, tx?:Knex) {
 
     return db
         .connection(tx)(`${USER_TABLE}`)
-        .insert(userDetail);
+        .insert(user);
 };
 
 /**
@@ -64,10 +64,10 @@ export async function save(userDetail:User, tx?:Knex) {
  * @param {object} params
  * @param {knex} tx
  */
-export async function update(userId:number, userDetail:User, tx?:Knex) {
+export async function update(id:number, user:User, tx?:Knex) {
 
     return db
         .connection(tx)(`${USER_TABLE}`)
-        .where({ userId })
-        .update(userDetail);
+        .where({ id })
+        .update(user);
 };
