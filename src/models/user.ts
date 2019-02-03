@@ -24,7 +24,7 @@ const SELECT_USER_VALUE = [
  * @param {object} params
  * @param {knex} tx
  */
-export async function fetchAll(tx?: Knex): Promise<User[]> {
+export async function fetchAll(tx?:Knex):Promise<User[]> {
     return db
         .connection(tx)(`${USER_TABLE} as user`)
         .select(SELECT_USER_VALUE);
@@ -36,8 +36,8 @@ export async function fetchAll(tx?: Knex): Promise<User[]> {
  * @param {object} params
  * @param {knex} tx
  */
-export async function fetchById(userId: number, tx?: Knex): Promise<User[]> {
-    const whereParam = userId ? { 'user.id': userId } : {};
+export async function fetchById(userId:number, tx?:Knex):Promise<User[]> {
+    const whereParam = userId ? { 'user.id':userId } : {};
 
     return db
         .connection(tx)(`${USER_TABLE} as user`)
@@ -51,7 +51,7 @@ export async function fetchById(userId: number, tx?: Knex): Promise<User[]> {
  * @param {object} params
  * @param {knex} tx
  */
-export async function save(userDetail: User, tx?: Knex): Promise<User[]> {
+export async function save(userDetail:User, tx?:Knex):Promise<User[]> {
 
     return db
         .connection(tx)(`${USER_TABLE}`)
@@ -64,7 +64,7 @@ export async function save(userDetail: User, tx?: Knex): Promise<User[]> {
  * @param {object} params
  * @param {knex} tx
  */
-export async function update(userId: number, userDetail: User, tx?: Knex): Promise<User[]> {
+export async function update(userId:number, userDetail:User, tx?:Knex):Promise<User[]> {
 
     return db
         .connection(tx)(`${USER_TABLE}`)
