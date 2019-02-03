@@ -42,9 +42,9 @@ export async function save(user:any):Promise<User>{
  */
 export async function update(id:number,user:User):Promise<User>{
     try {
-        const [updateId] = await userModel.update(id,user);
+        await userModel.update(id,user);
 
-        return { id:updateId, ...user};
+        return { id:id, ...user};
     } catch (error) {
         throw error;
     }
