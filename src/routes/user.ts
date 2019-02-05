@@ -28,8 +28,8 @@ router.post('/', userController.save);
 /**
  * update user
  * 
- * POST /users/:id
+ * PUT /users/:id
  */
-router.post('/:id', userController.update);
+router.put('/:id', userController.update);
 
 export default router;

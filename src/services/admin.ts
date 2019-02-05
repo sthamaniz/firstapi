@@ -12,3 +12,40 @@ import { Admin } from '../structures/admin';
         throw error;
     }
  };
+
+ /**
+ * fetch admin by id
+ */
+export async function fetchById(id:number):Promise<Admin[]>{
+    try {
+        return adminModel.fetchById(id);
+    } catch(error) {
+        throw error;
+    }
+ };
+
+  /**
+ *  save admin
+ */
+export async function save(admin:any):Promise<Admin>{
+    try {
+        const [insertId] = await adminModel.save(admin);
+
+        return {insertId, ...admin};
+    } catch(error) {
+        throw error;
+    }
+ };
+
+ /**
+ * update admin
+ */
+export async function update(id:number,admin:Admin):Promise<Admin>{
+    try {
+        await adminModel.update(id,admin);
+
+        return { id:id, ...admin};
+    } catch (error) {
+        throw error;
+    }
+};
