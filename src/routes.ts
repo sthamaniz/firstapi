@@ -3,6 +3,8 @@ import { Router } from 'express';
 import adminRouter from './routes/admin';
 import userRouter from './routes/user';
 
+import { checkAccessToken } from './validators/accestoken';
+
 const router = Router();
 
 /**
@@ -19,7 +21,7 @@ router.get('/', (req, res) => {
  * 
  * GET /admins
  */
-router.use('/admins',adminRouter);
+router.use('/admins', checkAccessToken, adminRouter);
 
 /**
  * get user router

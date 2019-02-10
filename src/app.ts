@@ -5,7 +5,7 @@ import * as bodyParser from "body-parser";
 
 import routes from './routes';
 
-import * as notFoundError from './errors/notFound';
+import * as routeNotFound from './middlewares/routenotfound';
 
 const app = express();
 
@@ -20,6 +20,6 @@ app.use('/', routes);
 /**
  * route not found error
  */
-app.use(notFoundError.notFound);
+app.use(routeNotFound.notFound);
 
 export default app;
