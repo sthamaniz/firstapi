@@ -10,9 +10,16 @@ import * as adminService from '../services/admin';
  * @param {NextFunction} next
  */
  export async function fetchAll(req:Request, res:Response, next:NextFunction) {
-     const allAdmin = await adminService.fetchAll();
+    
+    try {
+        
+        const allAdmin = await adminService.fetchAll();
+        res.status(200).json(allAdmin);
+    } catch (error) {
+        
+        next(error);
+    }
 
-     res.json(allAdmin);
  };
 
  /**

@@ -7,6 +7,9 @@ import routes from './routes';
 
 import * as routeNotFound from './middlewares/routenotfound';
 
+import * as errorHandler from './middlewares/errorHandler';
+
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -21,5 +24,6 @@ app.use('/', routes);
  * route not found error
  */
 app.use(routeNotFound.notFound);
+app.use(errorHandler.genericErrors);
 
 export default app;
