@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import CustomError from "../errors/CustomError";
 
+import HttpStatus from 'http-status-code';
+
 
 export function genericErrors(
     err: any,
@@ -24,4 +26,19 @@ export function genericErrors(
     }
     
     res.status(defaultError.code).json(defaultError);
+}
+
+/**
+ * Error response middleware for 404 not found.
+ *
+ * @param {Request} req
+ * @param {Response} res
+ */
+export function notFound(req: Request, res: Response) {
+    res.json({
+        error: {
+            code: HttpStatus.NOT_FOUND,
+            message: HttpStatus.getStatusText(HttpStatus.NOT_FOUND)
+        }
+});
 }

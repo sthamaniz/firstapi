@@ -2,32 +2,42 @@ import { Router } from 'express';
 
 import adminRouter from './routes/admin';
 import userRouter from './routes/user';
+import authRouter from './routes/auth';
 
-import { checkAccessToken } from './validators/accestoken';
+import { accessTokenValidation } from './validators/accesstoken';
+import { adminRouteValidation } from './validators/route';
 
 const router = Router();
 
 /**
  * get the info on start page
  */
-router.get('/', (req, res) => {
+router.get('/info', (req, res) => {
     res.json({
-        name: 'test api'
+        name: 'first api',
+        message: 'this is the first api'
     });
 });
 
 /**
- * get admins router 
+ * auth router
  * 
- * GET /admins
+ * auth
  */
-router.use('/admins', checkAccessToken, adminRouter);
+router.use('/auth', authRouter);
 
 /**
- * get user router
+ * admins router 
  * 
- * GET /users
+ * /admins
  */
-router.use('/users', userRouter);
+router.use('/admins', accessTokenValidation, adminRouteValidation, adminRouter);
+
+/**
+ * user router
+ * 
+ * /users
+ */
+router.use('/users', accessTokenValidation, userRouter);
 
 export default router;

@@ -29,3 +29,22 @@ export function toSnakeCase(obj: any) {
 
   return snakeCased;
 }
+
+/**
+ * exclude the attributes from the given object
+ * 
+ * @param {Object} obj
+ * @param {Array} excludeAttr
+ * @return {Object}
+ */
+export function excludeAttr(obj:any, excludeAttr:any[]) {
+  const result: any = {};
+
+  Object.keys(obj).forEach((key: string) => {
+    if (!excludeAttr.includes(key)) {
+      result[key] = obj[key];
+    }
+  });
+
+  return result;
+}

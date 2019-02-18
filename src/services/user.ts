@@ -14,9 +14,20 @@ export async function fetchAll():Promise<User[]>{
 };
 
 /**
+ * search user by params
+ */
+export async function search(params:any): Promise<User[]> {
+    try {
+        return await userModel.search(params);
+    } catch (error) {
+        throw error;
+    }
+}
+
+/**
  * fetch user by id
  */
-export async function fetchById(id:number):Promise<User[]>{
+export async function fetchById(id:number):Promise<User>{
     try {
         return await userModel.fetchById(id);
     } catch (error) {

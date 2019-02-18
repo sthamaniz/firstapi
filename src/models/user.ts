@@ -31,12 +31,32 @@ export async function fetchAll(tx?:Knex):Promise<User[]> {
 };
 
 /**
+ * Search userby params
+ *
+ * @param {object} params
+ * @param {knex} tx
+ */
+export async function search(params: any, tx?: Knex): Promise<User[]> {
+    const keys = Object.keys(params);
+    const newParams: any = {};
+    
+    keys.map((key: string) => {
+      newParams[`user.${key}`] = params[key];
+    });
+
+    return db
+    .connection(tx)(`${USER_TABLE} as user`)
+    .select(SELECT_USER_VALUE)
+    .where(newParams);
+};
+
+/**
  * fetch user by id
  * 
  * @param {object} params
  * @param {knex} tx
  */
-export async function fetchById(id:number, tx?:Knex):Promise<User[]> {
+export async function fetchById(id:number, tx?:Knex):Promise<User> {
     const whereParam = id ? { 'user.id':id } : {};
 
     return db

@@ -12,9 +12,13 @@ import * as userService from '../services/user';
  * @param {NextFunction} next 
  */
 export async function fetchAll(req:Request, res:Response, next:NextFunction){
-    const allUser = await userService.fetchAll();
-
-    res.json(allUser);
+    try {
+        const allUser = await userService.fetchAll();
+    
+        res.json(allUser);
+    } catch (error) {
+        throw error; 
+    }
 };
 
 /**
