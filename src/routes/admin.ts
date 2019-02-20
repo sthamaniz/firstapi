@@ -16,7 +16,7 @@ router.get('/', adminController.fetchAll);
  * 
  * GET /admins/:id
  */
-router.get('/', adminController.fetchById);
+router.get('/:id', adminController.fetchById);
 
 /**
  * save admin
@@ -28,8 +28,8 @@ router.post('/', adminController.save);
 /**
  * update admin
  * 
- * PUT /admins
+ * PUT /admins/:id
  */
-router.put('/', adminController.update);
+router.put('/:id', adminController.update);
 
 export default router;

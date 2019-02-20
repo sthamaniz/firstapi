@@ -20,14 +20,21 @@ export async function validateLogin(req: Request, res: Response, next: NextFunct
         const [user] = await userService.search(req.body);
     
         if (user) {
-            const [admin] = await adminService.fetchById(user.id);
+            const [admin] = await adminService.search({userId : user.id});
 
             let userWithType:any = {};
 
+            let userType:any = {};
+
             if (admin) {
-                userWithType = {...user,type:admin};    
+                userType.type = 'admin';
+                userType.role = 1;
+
+                userWithType = {...user,type:userType};    
             } else {
-                userWithType = {...user,type:user};
+                userType.type = 'user';
+                
+                userWithType = {...user,type:userType};
             }
             
             (req as AuthRequest).user = userWithType;

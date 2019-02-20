@@ -18,7 +18,7 @@ export async function generateToken(req: AuthRequest, res:Response, next:NextFun
     try {    
         
         const user: User = req.user;
-        const attrToExclude = [ 'id', 'password', 'createdAt' ];
+        const attrToExclude = [ 'password', 'createdAt' ];
 
         const userDetailForToken = excludeAttr(user,attrToExclude);
 

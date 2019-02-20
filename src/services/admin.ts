@@ -14,6 +14,17 @@ import { Admin } from '../structures/admin';
  };
 
  /**
+ * search admin by params
+ */
+export async function search(params:any): Promise<Admin[]> {
+    try {
+        return await adminModel.search(params);
+    } catch (error) {
+        throw error;
+    }
+}
+
+ /**
  * fetch admin by id
  */
 export async function fetchById(id:number):Promise<Admin[]>{

@@ -36,6 +36,27 @@ const SELECT_ADMIN_VALUE = [
  };
 
  /**
+ * Search admin  params
+ *
+ * @param {object} params
+ * @param {knex} tx
+ */
+export async function search(params: any, tx?: Knex): Promise<Admin[]> {
+    const keys = Object.keys(params);
+    const newParams: any = {};
+    
+    keys.map((key: string) => {
+      newParams[`admin.${key}`] = params[key];
+    });
+
+    return db
+    .connection(tx)(`${ADMIN_TABLE} as admin`)
+    .select(SELECT_ADMIN_VALUE)
+    .leftJoin(`${USER_TABLE} as user`,'admin.user_id','user.id')
+    .where(newParams);
+};
+
+ /**
  * fetch admin by id
  * 
  * @param {object} params
