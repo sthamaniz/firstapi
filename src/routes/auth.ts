@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import { validateLogin } from '../validators/auth';
 import { generateToken } from '../controllers/auth';
+import { validateLoginSchema } from '../validators/schemaValidators/auth';
 
 const router = Router();
 
@@ -10,7 +11,7 @@ const router = Router();
  * 
  POST /auth
  */
-router.post('/', validateLogin, generateToken);
+router.post('/', validateLoginSchema, validateLogin, generateToken);
 
 export default router;
 

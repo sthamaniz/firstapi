@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import * as userController from '../controllers/user';
 
-import { userValidator, userSchemaValidator } from '../validators/user';
+import { userValidator } from '../validators/user';
  
 const router = Router();
 
@@ -25,7 +25,7 @@ router.get('/:id', userValidator, userController.fetchById);
  * 
  * POST /users
  */
-router.post('/', userSchemaValidator, userController.save);
+router.post('/', userController.save);
 
 /**
  * update user
