@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 import * as userController from '../controllers/user';
 
+import { userValidator, userSchemaValidator } from '../validators/user';
+ 
 const router = Router();
 
 /**
@@ -16,20 +18,20 @@ router.get('/', userController.fetchAll);
  * 
  * GET /users/:id
  */
-router.get('/:id', userController.fetchById);
+router.get('/:id', userValidator, userController.fetchById);
 
 /**
  * save user
  * 
  * POST /users
  */
-router.post('/', userController.save);
+router.post('/', userSchemaValidator, userController.save);
 
 /**
  * update user
  * 
  * PUT /users/:id
  */
-router.put('/:id', userController.update);
+router.put('/:id', userValidator, userController.update);
 
 export default router;

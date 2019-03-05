@@ -17,7 +17,9 @@ import DataNotFoundError from '../errors/DataNotFoundError';
  */
 export async function validateLogin(req: Request, res: Response, next: NextFunction) {
     try {
-        const [user] = await userService.search(req.body);
+        const { body: { username = null, password = null } = {} } = req;
+
+        const [user] = await userService.search({ username, password });
     
         if (user) {
             const [admin] = await adminService.search({userId : user.id});
@@ -28,7 +30,7 @@ export async function validateLogin(req: Request, res: Response, next: NextFunct
 
             if (admin) {
                 userType.type = 'admin';
-                userType.role = 1;
+                userType.role = admin.role;
 
                 userWithType = {...user,type:userType};    
             } else {
